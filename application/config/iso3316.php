@@ -1,7 +1,7 @@
 <?php
 /* http://www.robertmullaney.com/2013/04/03/updated-iso-3316-country-list-php-array/ */
 
-$iso3316_countries = array(
+$config['iso3316_countries'] = array(
     'AF' => 'Afghanistan',
     'AX' => 'Åland Islands',
     'AL' => 'Albania',

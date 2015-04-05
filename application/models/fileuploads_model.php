@@ -1,11 +1,11 @@
 <?php
 
-class FileUploads_model extends Model
+class FileUploads_model extends CI_Model
 {
 
 	function FileUploads_model()
 	{
-		parent::Model();
+		parent::__construct();
 		$this->load->helper('file');
 	}
 	

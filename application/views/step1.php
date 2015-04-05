@@ -61,12 +61,12 @@
 							<select name="territory">
 								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'ALL' ? ' selected="selected"' : '' ?> value="ALL" selected="selected">All countries</option>
 
-								<?php foreach($iso3316_countries as $code => $country): ?>
+								<?php foreach($this->config->item('iso3316_countries') as $code => $country): ?>
 								<option<?=$this->input->post('territory') && $this->input->post('territory') == $code ? ' selected="selected"' : '' ?> value="<?=$code?>"><?=$country?></option>
 								<?php endforeach; ?>
 
 							</select>
-							Select your profile's country for better results
+							<p>Select your profile's country for better results</p>
 						
 						</fieldset>
 						

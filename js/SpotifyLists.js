@@ -24,6 +24,8 @@ SpotifyList = Class.create({
 		
 		this.getPlaylistCount();
 		//this.getNextPlaylistItem();
+
+		//console.log('well hello there...');
 		
 	},
 	
@@ -37,6 +39,7 @@ SpotifyList = Class.create({
 		Form.Element.disable('ivystart');
 		
 		this.getNextPlaylistItem();
+		//console.log('starting getting next playlist track data...');
 	},
 	
 	getPlaylistCount: function() {
@@ -55,6 +58,7 @@ SpotifyList = Class.create({
 			
 		this.currentTrack++;
 		
+		console.log('getting new playlist track data...');
 		var item = new Ajax.Request('ivy/ajax_get_next/playlist/'+this.playlistID+'/track/'+this.currentTrack, 
 		{ method: 'get', onSuccess: this.showNewPlaylistItem.bindAsEventListener(this), onFailure: function() {  } } );
 	},
@@ -63,8 +67,10 @@ SpotifyList = Class.create({
 	showNewPlaylistItem: function(event) {
 				
 		
-		if(event.getHeader('Content-Type') == 'text/x-json')
+		if(event.getHeader('Content-Type').indexOf('text/x-json') != -1)
 			var response = event.responseText.evalJSON();
+		else
+			console.log('warning: response for new track data not json?');
 				
 		var tracks = response.response;
 		var trackdata = response.trackdata;
@@ -169,7 +175,7 @@ SpotifyList = Class.create({
 		$('step-2-active').writeAttribute('id', 'step-2');
 		$('step-3').writeAttribute('id', 'step-3-active');
 
-		$('tracklist').value.trim(); //trim last \n from result list as this confuses Spotify clients
+		$('tracklist').value = $('tracklist').value.trim(); //trim last \n from result list as this confuses Spotify clients
 		
 		
 /*

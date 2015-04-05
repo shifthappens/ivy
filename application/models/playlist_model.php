@@ -1,13 +1,13 @@
 <?php
 
 
-class Playlist_model extends Model
+class Playlist_model extends CI_Model
 {
 
 	function Playlist_model()
 	{
-		parent::Model();
-		$this->ci =& get_instance();
+		parent::__construct();
+		//$this->ci =& get_instance();
 	}
 	
 	
@@ -152,7 +152,7 @@ class Playlist_model extends Model
 		elseif($results->num_rows() === 0 && $print_to_screen === FALSE)
 			return TRUE;
 		
-		$this->ci->load->model('FileUploads_model');
+		$this->load->model('FileUploads_model');
 
 		$del = 0;
 		
@@ -161,7 +161,7 @@ class Playlist_model extends Model
 			//these playlists are ready for deletion
 			$this->delete_playlist($playlist->playlist_ID, $print_to_screen);
 			
-			$this->ci->FileUploads_model->delete_file($playlist->playlist_source, $print_to_screen);
+			$this->FileUploads_model->delete_file($playlist->playlist_source, $print_to_screen);
 			
 			$del++;
 		}

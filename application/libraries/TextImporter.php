@@ -1,7 +1,7 @@
 <?php
 
 if(!class_exists("importer"))
-	require_once("importer.php");
+	require_once("Importer.php");
 
 
 class TextImporter extends Importer

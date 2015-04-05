@@ -1,13 +1,13 @@
 <?php
 
 
-class Home extends Controller
+class Home extends CI_Controller
 {
 
 
 	function Home()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->output->set_header('Content-type: text/html; charset=UTF-8');
 	}
 	
