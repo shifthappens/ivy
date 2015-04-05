@@ -168,6 +168,8 @@ SpotifyList = Class.create({
 		
 		$('step-2-active').writeAttribute('id', 'step-2');
 		$('step-3').writeAttribute('id', 'step-3-active');
+
+		$('tracklist').value.trim(); //trim last \n from result list as this confuses Spotify clients
 		
 		
 /*
