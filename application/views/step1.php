@@ -60,20 +60,12 @@
 
 							<select name="territory">
 								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'ALL' ? ' selected="selected"' : '' ?> value="ALL" selected="selected">All countries</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'AT' ? ' selected="selected"' : '' ?> value="AT">Austria</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'BE' ? ' selected="selected"' : '' ?> value="BE">Belgium</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'DK' ? ' selected="selected"' : '' ?> value="DK">Denmark</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'FO' ? ' selected="selected"' : '' ?> value="FO">Faroe Islands</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'FI' ? ' selected="selected"' : '' ?> value="FI">Finland</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'FR' ? ' selected="selected"' : '' ?> value="FR">France</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'NO' ? ' selected="selected"' : '' ?> value="NO">Norway</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'ES' ? ' selected="selected"' : '' ?> value="ES">Spain</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'SE' ? ' selected="selected"' : '' ?> value="SE">Sweden</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'CH' ? ' selected="selected"' : '' ?> value="CH">Switzerland</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'NL' ? ' selected="selected"' : '' ?> value="NL">The Netherlands</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'UK' ? ' selected="selected"' : '' ?> value="UK">United Kingdom</option>
-								<option<?=$this->input->post('territory') && $this->input->post('territory') == 'US' ? ' selected="selected"' : '' ?> value="US">United States</option>
-							</select>							
+
+								<?php foreach($iso3316_countries as $code => $country): ?>
+								<option<?=$this->input->post('territory') && $this->input->post('territory') == $code ? ' selected="selected"' : '' ?> value="<?=$code?>"><?=$country?></option>
+								<?php endforeach; ?>
+
+							</select>
 							Select your profile's country for better results
 						
 						</fieldset>

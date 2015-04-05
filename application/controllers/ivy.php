@@ -13,6 +13,8 @@ class Ivy extends Controller
 
 		$this->load->helper('form');
 
+		$this->load->config('iso3316');
+
 		$this->data = new stdClass();
 		
 		//setting the config variables for the uploader
