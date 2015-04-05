@@ -1,12 +1,12 @@
 <?php
 
-class Ivy extends Controller
+class Ivy extends CI_Controller
 {
 
 
 	function Ivy()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('spotify');
 		$this->load->model('Playlist_model');
@@ -41,7 +41,9 @@ class Ivy extends Controller
 		switch($this->input->post("uploadtype"))
 		{
 			case "playlist-file":
-				$this->upload_config['allowed_types'] = 'm3u|pls|extm3u|xml|csv|txt|tsv|audio/x-mpegurl';
+				//$this->upload_config['allowed_types'] = 'm3u|pls|extm3u|xml|csv|txt|tsv|audio/x-mpegurl|text/csv';
+				//$this->upload_config['allowed_types'] = array('m3u','pls','extm3u','xml','csv','txt', 'text/csv');				
+				$this->upload_config['allowed_types'] = '*';
 				$this->load->library('upload', $this->upload_config);
 
 				if(!$this->upload->do_upload('sourcefile'))
