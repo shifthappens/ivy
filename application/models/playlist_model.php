@@ -145,12 +145,17 @@ class Playlist_model extends CI_Model
 	
 	function clean_up_playlists($print_to_screen = FALSE)
 	{
-		$results = $this->db->select(array('playlist_ID', 'playlist_source'))->where('DATE_SUB(CURDATE(),INTERVAL 14 DAY) >= playlist_date')->get('playlists');
+		$results = $this->db->select(array('playlist_ID', 'playlist_source'))->where('DATE_SUB(CURDATE(),INTERVAL 2 DAY) >= playlist_date')->get('playlists');
 		
 		if($results->num_rows() === 0 && $print_to_screen)
+		{
 			echo "0 playlists had to be removed. <br />";
-		elseif($results->num_rows() === 0 && $print_to_screen === FALSE)
 			return TRUE;
+		}
+		elseif($results->num_rows() === 0 && $print_to_screen === FALSE)
+		{
+			return TRUE;
+		}
 		
 		$this->load->model('FileUploads_model');
 
