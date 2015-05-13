@@ -145,7 +145,7 @@ class Playlist_model extends CI_Model
 	
 	function clean_up_playlists($print_to_screen = FALSE)
 	{
-		$results = $this->db->select(array('playlist_ID', 'playlist_source'))->where('DATE_SUB(CURDATE(),INTERVAL 2 DAY) >= playlist_date')->get('playlists');
+		$results = $this->db->select(array('playlist_ID', 'playlist_source'))->where('DATE_SUB(CURDATE(),INTERVAL 1 DAY) >= playlist_date')->get('playlists');
 		
 		if($results->num_rows() === 0 && $print_to_screen)
 		{
