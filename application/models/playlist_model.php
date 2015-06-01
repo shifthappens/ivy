@@ -157,24 +157,24 @@ class Playlist_model extends CI_Model
 			return TRUE;
 		}
 		
-		$this->load->model('FileUploads_model');
-
 		$del = 0;
 		
 		foreach($results->result() as $playlist)
 		{
 			//these playlists are ready for deletion
 			$this->delete_playlist($playlist->playlist_ID, $print_to_screen);
-			
-			$this->FileUploads_model->delete_file($playlist->playlist_source, $print_to_screen);
-			
+						
 			$del++;
 		}
-		
+
 		log_message('debug', 'Playlist model: deleted '.$del.' playlists during cleanup.');
 
 		if($print_to_screen)
 			$this->load->view('cleanup', array('message' => 'Playlist model: deleted '.$del.' playlists during cleanup. <br />'));
+
+		//next step: delete the original playlist files
+		$this->load->model('FileUploads_model');
+		$this->FileUploads_model->cleanup_files(time()-86400, $print_to_screen); //delete all files older than one day
 
 		return $del;
 	}

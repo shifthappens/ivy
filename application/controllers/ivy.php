@@ -20,6 +20,7 @@ class Ivy extends CI_Controller
 		//setting the config variables for the uploader
 		$this->upload_config['upload_path'] = './uploads/';
 		$this->upload_config['max_size'] = '4096';
+		$this->upload_config['encrypt_name'] = TRUE;
 		$this->output->set_header('Content-type: text/html; charset=UTF-8');
 
 	}
@@ -287,6 +288,12 @@ class Ivy extends CI_Controller
 	{
 		$this->_cleanup(TRUE);
 	}
+
+	// function cf()
+	// {
+	// 	$this->load->model('Fileuploads_model');
+	// 	$this->Fileuploads_model->cleanup_files(time()-86400, true);
+	// }
 	
 	function _cleanup($print_to_screen = FALSE)
 	{			
