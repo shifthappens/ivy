@@ -130,14 +130,14 @@ class Playlist_model extends CI_Model
 		if($this->db->where('playlist_ID', $ID)->delete('playlists'))
 		{
 			if($print_to_screen)
-				echo "Playlist with ID ".$ID." deleted successfully. <br />";
+				$this->load->view('cleanup', array('message' => "Playlist with ID ".$ID." deleted successfully. <br />"));
 
 			return TRUE;
 		}
 		else
 		{
 			if($print_to_screen)
-				echo "Playlist with ID ".$ID." NOT deleted! <br />";
+				$this->load->view('cleanup', array("Playlist with ID ".$ID." NOT deleted! <br />"));
 
 			return FALSE;
 		}
@@ -149,7 +149,7 @@ class Playlist_model extends CI_Model
 		
 		if($results->num_rows() === 0 && $print_to_screen)
 		{
-			echo "0 playlists had to be removed. <br />";
+			$this->load->view('cleanup', array('message' => "0 playlists had to be removed. <br />"));
 			return TRUE;
 		}
 		elseif($results->num_rows() === 0 && $print_to_screen === FALSE)
@@ -174,7 +174,7 @@ class Playlist_model extends CI_Model
 		log_message('debug', 'Playlist model: deleted '.$del.' playlists during cleanup.');
 
 		if($print_to_screen)
-			echo 'Playlist model: deleted '.$del.' playlists during cleanup. <br />';
+			$this->load->view('cleanup', array('message' => 'Playlist model: deleted '.$del.' playlists during cleanup. <br />'));
 
 		return $del;
 	}
