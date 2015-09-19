@@ -63,6 +63,7 @@ class CSVImporter extends Importer
 	public function scan_headers()
 	{	
 		$original_headers = $this->get_headers();
+		$matches = array();
 		
 		foreach($this->get_default_columns() as $column => $possibilities)
 		{
