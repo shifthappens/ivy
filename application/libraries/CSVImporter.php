@@ -88,7 +88,7 @@ class CSVImporter extends Importer
 		
 		log_message('debug', "scan headers matches = ".print_r($matches, true));
 		
-		if(count($matches['artist_column']) === 1 && count($matches['track_column']) === 1)
+		if(isset($matches['artist_column']) && isset($matches['track_column']))
 			return TRUE;
 		else
 			return FALSE;
