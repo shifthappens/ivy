@@ -24,13 +24,16 @@ class Playlist_model extends CI_Model
 		
 		$tracknr = 1;
 		
-		//print_r($headers);
+		//print_r($data);
 		
 		foreach($data as $row)
 		{
 			//if($tracknr === 1) print_r($row);
 			$artist = $headers['artist_column'];
 			$title = $headers['track_column'];
+
+			if(!isset($row[$artist]) || !isset($row[$title]))
+				continue;
 			
 			$this->db->set('artist', $row[$artist]);
 			$this->db->set('title', $row[$title]);
@@ -157,13 +160,17 @@ class Playlist_model extends CI_Model
 			return TRUE;
 		}
 		
+		$this->load->model('FileUploads_model');
+
 		$del = 0;
 		
 		foreach($results->result() as $playlist)
 		{
 			//these playlists are ready for deletion
 			$this->delete_playlist($playlist->playlist_ID, $print_to_screen);
-						
+			
+			$this->FileUploads_model->cleanup_files(time()-86400, $print_to_screen); //delete all files older than one day
+			
 			$del++;
 		}
 
@@ -171,10 +178,6 @@ class Playlist_model extends CI_Model
 
 		if($print_to_screen)
 			$this->load->view('cleanup', array('message' => 'Playlist model: deleted '.$del.' playlists during cleanup. <br />'));
-
-		//next step: delete the original playlist files
-		$this->load->model('FileUploads_model');
-		$this->FileUploads_model->cleanup_files(time()-86400, $print_to_screen); //delete all files older than one day
 
 		return $del;
 	}
