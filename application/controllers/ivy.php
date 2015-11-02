@@ -65,7 +65,7 @@ class Ivy extends CI_Controller
 						case '.xml':				
 							$this->session->unset_userdata('offset');
 				
-							$this->load->library('iTunesImporter', NULL, 'itunes');
+							$this->load->library('ITunesImporter', NULL, 'itunes');
 							
 							$this->itunes->load_file($upload_data["full_path"]);
 							$this->itunes->parse_xml();
@@ -78,7 +78,7 @@ class Ivy extends CI_Controller
 							}
 							else
 							{
-								$this->data->playlist_ID = $this->Playlist_model->save_playlist($this->itunes->rows, $upload_data['full_path']);
+								$this->data->playlist_ID = $this->Playlist_model->save_playlist($this->itunes->rows, $upload_data['full_path'], $this->itunes->columns);
 								$this->data->source = $upload_data['full_path'];
 								$this->data->num_tracks = count($this->itunes->rows);
 																	
@@ -289,11 +289,11 @@ class Ivy extends CI_Controller
 		$this->_cleanup(TRUE);
 	}
 
-	// function cf()
-	// {
-	// 	$this->load->model('Fileuploads_model');
-	// 	$this->Fileuploads_model->cleanup_files(time()-86400, true);
-	// }
+	function cf()
+	{
+		$this->load->model('Fileuploads_model');
+		$this->Fileuploads_model->cleanup_files(time()-86400, true);
+	}
 	
 	function _cleanup($print_to_screen = FALSE)
 	{			

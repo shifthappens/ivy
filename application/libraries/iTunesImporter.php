@@ -4,7 +4,7 @@ if(!class_exists("importer"))
 	require_once("importer.php");
 
 
-class iTunesImporter extends Importer
+class ITunesImporter extends Importer
 {
 	
 	private $XML;
@@ -126,6 +126,10 @@ class iTunesImporter extends Importer
 				
 		//saving to the rows property
 		$this->rows = $songs;	
+
+		//saving column / headers information for the script that runs it through Spotify
+		$this->columns["artist_column"] = "artist";
+		$this->columns["track_column"] = "title";
 	}
 
 }
