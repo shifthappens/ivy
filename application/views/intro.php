@@ -12,7 +12,7 @@
 						
 			<div class="textbox">
 
-				<h4>What is Ivy?</h4>
+<!-- 				<h4>What is Ivy?</h4>
 				<p>Do you love Spotify? So do I! But Spotify probably isn't your first experience with music, so you've got plenty of
 				playlists already, in iTunes for instance. Ivy is a new webservice that can convert your existing playlists into Spotify playlists.
 				That way you won't have to start from scratch, searching all that music again. Ivy does that for you.</p>
@@ -33,7 +33,15 @@
 				</div>
 			</div>
 	
-			<?php $this->load->view('backbutton') ?>
+			<?php $this->load->view('backbutton') ?> -->
+
+				<div class="warning">
+					<strong>Ivy is currently being rebuilt.</strong>
+					<p>After 6 years of support, Spotify finally retired their old API and Ivy can't quite work with the new one yet.
+						This requires a rewrite of many parts of the tool. This will take some time. An ETA can't be given at this moment.
+						I know a lot of people are enjoying Ivy and would like to see it back. It started as a hobby project back in 2010 and
+						has since then grown to become a website where more than 200 people upload their playlists every day.</p>
+				</div>
 
 		</div>
 
